@@ -25,7 +25,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{FC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolitionItems", "SolitionItems", "{74B32826-FE75-4BBE-9F40-CA629D191D98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspimo_Microservice.Services.Catalog", "Services\Catalog\Inspimo_Microservice.Services.Catalog\Inspimo_Microservice.Services.Catalog.csproj", "{3206AECF-CB8E-46C6-ACD4-58A9C85B1D08}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3206AECF-CB8E-46C6-ACD4-58A9C85B1D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3206AECF-CB8E-46C6-ACD4-58A9C85B1D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3206AECF-CB8E-46C6-ACD4-58A9C85B1D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3206AECF-CB8E-46C6-ACD4-58A9C85B1D08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
@@ -36,6 +48,7 @@ Global
 		{09A8EA92-4158-46CC-9A7D-151141989BF0} = {97530845-518F-4716-9BB6-5F94EBC50262}
 		{22E45A0B-0459-4898-A8C4-8599FE0EE8D4} = {97530845-518F-4716-9BB6-5F94EBC50262}
 		{85C6446B-891D-4580-9272-BDBA6761485D} = {97530845-518F-4716-9BB6-5F94EBC50262}
+		{3206AECF-CB8E-46C6-ACD4-58A9C85B1D08} = {27BAD950-7249-4EB7-A8E7-B30DEB6F1DA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D4915C7-C6CE-43C5-AF87-A0AD327A3CD1}
