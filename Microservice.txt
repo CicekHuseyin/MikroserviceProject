@@ -1,0 +1,36 @@
+Visual Studio dan Blank Soliton açıyorsun. İçin klasör yapılarını ekle.(Solition içine)
+-Frontend
+-Gateways
+-Services
+ Basket
+ Catalog
+ Discount
+ FrakePayment
+ Order
+ PhotoStock
+-Shared
+-SolitionItems
+Bu klasör yapısı üzerinde çalışıcağız. Şimdi Catalog klasörünün içine Api projesi oluştur.(5.0 ile) Api eklerken Dosya yoluna \Services\Catalog olarak ekle.
+Nuget Packges dan projeye MongoDb drive paketini yükle.
+Catalog içinde ki api projesine Model klasörü ekle. İçine entity tanımla(Catalog.cs,Product.cs)
+Catalog içinde ki api projesine Settings klasörü ekle.İçine Abstract ve Concrete klasörü aç.
+Abstract içine interface ekle.(IDataBaseSettings.cs)
+Concrete içine class ekle.IDataBaseSettings den miras al.(DataBaseSettings.cs)
+Bağlantı configurasyonu için appsettings.js içine DatabaseSettings.cs de yazdığımız prop ların değerlerini yazdık.
+"DataBaseSettings": {
+    "CategoryCollectionName": "Categories",
+    "ProductCollectionName": "Products",
+    "ConnectionString": "mongodb://localhost:27017",
+    "DataBaseName": "CatalogDb"
+  },
+Shared klasörüne class library ekle.(Inspimo_Microservice.Shared) bunun üzerinde çalış
+Class Library içine:
+Ortak dönüş tipleri için "Dtos" klasörü ekle.
+Dtos içine class ekle(Response,ErrorDto.cs,NoContent.cs)
+Catalog de ki api projesine Dtos klasörü onun içine de Dto ları ekledik.
+Catalog de ki api projesine Services klasörü onun içine de Abstract,Concrete klasörleri ekle
+Abstract klasörü içine Interface ekle(ICategoryService.cs,IProductService.cs)
+Catalog-Api projesi içine Mapping klasörü oluştur.
+Mapping klasörüne class ekle.(GeneralMapping.cs)
+Catalog-Api-Services-Concrete klasörü içine class ekle(ProductService,CategoryService)
+
