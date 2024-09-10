@@ -2,6 +2,7 @@
 using Inspimo_Microservice.Services.Catalog.Dtos;
 using Inspimo_Microservice.Services.Catalog.Models;
 using Inspimo_Microservice.Services.Catalog.Services.Abstract;
+using Inspimo_Microservice.Services.Catalog.Settings.Abstract;
 using Inspimo_Microservice.Shared.Dtos;
 using MongoDB.Driver;
 using System.Collections.Generic;
@@ -13,29 +14,51 @@ namespace Inspimo_Microservice.Services.Catalog.Services.Concrete
     {
         private readonly IMongoCollection<Category> _categoryCollection;
         private readonly IMapper _mapper;
-        public Task<Response<NoContent>> CreateAsync(CreateCategoryDto createCategoryDto)
+
+        public CategoryService(IMapper mapper,IDataBaseSettings dataBaseSettings)
         {
-            throw new System.NotImplementedException();
+            _mapper = mapper;
+            var client= new MongoClient(dataBaseSettings.ConnectionString);
+            var dataBase = client.GetDatabase(dataBaseSettings.DataBaseName);
+            _categoryCollection = dataBase.GetCollection<Category>(dataBaseSettings.CategoryCollectionName);
         }
 
-        public Task<Response<NoContent>> DeleteAsync(string id)
+        public async Task<Response<NoContent>> CreateAsync(CreateCategoryDto createCategoryDto)
         {
-            throw new System.NotImplementedException();
+            //Category ile Category e ait Dto yu mapledi.
+            var values = _mapper.Map<Category>(createCategoryDto);
+            //Kayıt ekleme işlemi
+            await _categoryCollection.InsertOneAsync(values);
+            return Response<NoContent>.Success(200);
         }
 
-        public Task<Response<List<ResultCategoryDto>>> GetAllAsync()
+        public async Task<Response<NoContent>> DeleteAsync(string id)
         {
-            throw new System.NotImplementedException();
+            var result=await _categoryCollection.DeleteOneAsync(x=>x.CategoryID==id);
+            return Response<NoContent>.Success(200);
         }
 
-        public Task<Response<ResultCategoryDto>> GetByIdAsync(string id)
+        public async Task<Response<List<ResultCategoryDto>>> GetAllAsync()
         {
-            throw new System.NotImplementedException();
+            var values = await _categoryCollection.Find(value => true).ToListAsync();
+            return Response<List<ResultCategoryDto>>.Success(_mapper.Map<List<ResultCategoryDto>>(values), 200);
         }
 
-        public Task<Response<NoContent>> UpdateAsync(UpdateCategoryDto updateCategoryDto)
+        public async Task<Response<ResultCategoryDto>> GetByIdAsync(string id)
         {
-            throw new System.NotImplementedException();
+            var value=await _categoryCollection.Find<Category>(x=>x.CategoryID== id).FirstOrDefaultAsync();
+            if (value==null)
+            {
+                return Response<ResultCategoryDto>.Fail("Kategori bulunamadı.", 404);
+            }
+            return Response<ResultCategoryDto>.Success(_mapper.Map<ResultCategoryDto>(value),200);
+        }
+
+        public async Task<Response<NoContent>> UpdateAsync(UpdateCategoryDto updateCategoryDto)
+        {
+            var value = _mapper.Map<Category>(updateCategoryDto);
+            var result=await _categoryCollection.FindOneAndReplaceAsync(x=>x.CategoryID==updateCategoryDto.CategoryID,value);
+            return Response<NoContent>.Success(200);
         }
     }
 }

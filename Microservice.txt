@@ -33,4 +33,17 @@ Abstract klasörü içine Interface ekle(ICategoryService.cs,IProductService.cs)
 Catalog-Api projesi içine Mapping klasörü oluştur.
 Mapping klasörüne class ekle.(GeneralMapping.cs)
 Catalog-Api-Services-Concrete klasörü içine class ekle(ProductService,CategoryService)
+Eklediğimiz class ları doldur.(ProductService,CategoryService)
+StartUp.cs de configurasyonlarını yaz.
+ 	    services.AddScoped<ICategoroyService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+	    services.AddAutoMapper(typeof(Startup)); //Bunun için AutoMapper.Extensions.Microsoft.DependencyInjection bu paketi yükle
+            services.Configure<DataBaseSettings>(Configuration.GetSection("DataBaseSettings")); //DatabaseSettings appsettings den geliyor.
+	    services.AddSingleton<IDataBaseSettings>(sp =>
+            {
+                return sp.GetRequiredService<IOptions<DataBaseSettings>>().Value;
+            });
 
+Catalog-Api-Controller klasörüne controller ekle(CategoryController,ProductController)
+Shared - Inspimo.Microservis.Shared projesine klasör ekle (ContorllerBases)
+Bu klasör içine class ekle (CustomBaseController)
