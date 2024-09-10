@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolitionItems", "SolitionIt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inspimo_Microservice.Services.Catalog", "Services\Catalog\Inspimo_Microservice.Services.Catalog\Inspimo_Microservice.Services.Catalog.csproj", "{3206AECF-CB8E-46C6-ACD4-58A9C85B1D08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspimo_Microservice.Shared", "Shared\Inspimo_Microservice.Shared\Inspimo_Microservice.Shared.csproj", "{17C53060-5887-4BAC-B721-A4CF88C84B09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inspimo_Microservice.Shared", "Shared\Inspimo_Microservice.Shared\Inspimo_Microservice.Shared.csproj", "{17C53060-5887-4BAC-B721-A4CF88C84B09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
